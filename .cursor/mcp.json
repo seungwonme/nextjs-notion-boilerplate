@@ -1,0 +1,19 @@
+{
+  "mcpServers": {
+    "sequential-thinking": {
+      "command": "bun x",
+      "args": ["@modelcontextprotocol/server-sequential-thinking"]
+    },
+    "context7": {
+      "command": "bun x",
+      "args": ["@upstash/context7-mcp"]
+    },
+    "notionApi": {
+      "command": "bun x",
+      "args": ["@notionhq/notion-mcp-server"],
+      "env": {
+        "OPENAPI_MCP_HEADERS": "{\"Authorization\": \"Bearer your_notion_access_token\", \"Notion-Version\": \"2022-06-28\" }"
+      }
+    }
+  }
+}
