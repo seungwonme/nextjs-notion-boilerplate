@@ -1,26 +1,77 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #ffffff; /* Light mode background */
+  --foreground: #171717; /* Light mode foreground */
+  --subtle-background: #f5f5f5; /* Light mode subtle background */
+  --subtle-foreground: #737373; /* Light mode subtle foreground */
+  --accent: #0070f3; /* Light mode accent color */
+  --card-border: #e5e5e5; /* Light mode card border */
+  --card-hover: rgba(0, 0, 0, 0.05); /* Light mode card hover */
+  --shadow: rgba(0, 0, 0, 0.05); /* Light mode shadow */
+}
+
+html.dark {
+  --background: #0a0a0a; /* Dark mode background */
+  --foreground: #ededed; /* Dark mode foreground */
+  --subtle-background: #171717; /* Dark mode subtle background */
+  --subtle-foreground: #a3a3a3; /* Dark mode subtle foreground */
+  --accent: #3b82f6; /* Dark mode accent color */
+  --card-border: #262626; /* Dark mode card border */
+  --card-hover: rgba(255, 255, 255, 0.05); /* Dark mode card hover */
+  --shadow: rgba(0, 0, 0, 0.3); /* Dark mode shadow */
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-subtle-background: var(--subtle-background);
+  --color-subtle-foreground: var(--subtle-foreground);
+  --color-accent: var(--accent);
+  --color-card-border: var(--card-border);
+  --color-card-hover: var(--card-hover);
+  --color-shadow: var(--shadow);
+  --font-sans: Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: "SF Mono", SFMono-Regular, ui-monospace, monospace;
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  font-feature-settings: "ss01", "ss02", "cv01", "cv02";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition:
+    background-color 0.2s ease-in-out,
+    color 0.2s ease-in-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--subtle-background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--subtle-foreground);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
 }
